@@ -66,6 +66,7 @@ const handleData = (data) => {
         element.innerHTML = data.data.viewer.bio;
     })
     counter.innerHTML = data.data.viewer.repositories.totalCount;
+
     handleRepos(data);
 }
 
@@ -156,3 +157,18 @@ const handleRepos = (data) => {
        
     })
 }
+
+
+// EVENT LISTENER
+
+const hamburger = document.querySelector(".hamburger");
+const hiddenNav = document.querySelector(".hidden-nav");
+
+
+hamburger.addEventListener("click", () => {
+    if(hiddenNav.style.display === "block"){
+        hiddenNav.style.display = "none";
+    } else {
+        hiddenNav.style.display = "block";
+    }
+})
