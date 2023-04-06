@@ -5,7 +5,7 @@ const	desc = document.querySelectorAll(".desc")
 const	repoWrapper = document.querySelector(".repo-wrapper")
 const	counter = document.querySelector(".counter");
 
-const apiUrl = 'http://localhost:4000/api'
+const apiUrl = 'https://git-repo-api.onrender.com/api'
 const url = "https://api.github.com/graphql";
 
 const bodyData = JSON.stringify({
