@@ -5,50 +5,67 @@ const	desc = document.querySelectorAll(".desc")
 const	repoWrapper = document.querySelector(".repo-wrapper")
 const	counter = document.querySelector(".counter");
 
+const apiUrl = 'http://localhost:4000/api'
 const url = "https://api.github.com/graphql";
 
-fetch(url, {
-	method: "POST",
-	headers: {
-		Authorization: 'Bearer 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',
-		"Content-Type": "application/json",
-	},
-	body: JSON.stringify({
-		query: `
-            query{
-                viewer{
-                name
-                login
-                bio 
-                avatarUrl
-                repositories(last: 20) {
-                    totalCount
-                    nodes {
-                    forkCount
-                    stargazers{
-                        totalCount
-                    }
-                    name
-                    description          
-                    primaryLanguage{
-                        name
-                        color
-                    }
-                    url
-                    updatedAt
-                    
-                }
-              }
-            }
-        }
-        `,
-	}),
+const bodyData = JSON.stringify({
+	query: `
+		query{
+				viewer{
+				name
+				login
+				bio 
+				avatarUrl
+				repositories(last: 20) {
+						totalCount
+						nodes {
+						forkCount
+						stargazers{
+								totalCount
+						}
+						name
+						description          
+						primaryLanguage{
+								name
+								color
+						}
+						url
+						updatedAt
+						
+				}
+			}
+		}
+  }
+  `
 })
-	.then((res) => res.json())
-	.then((data) => {
-		// console.log(data);
+
+const getToken = async () => {
+	try {
+		const response = await fetch(apiUrl)
+		const data = await response.json()
+		getData(data.token)
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+const getData = async (token) => {
+	try {
+		const response = await fetch(url, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: bodyData
+		})
+
+		const data = await response.json()
 		handleData(data);
-	});
+	} catch (error) {
+		console.error(error)
+	}
+}
 
 const handleData = (data) => {
 	bioImage.forEach((element) => {
@@ -159,3 +176,5 @@ hamburger.addEventListener("click", () => {
 		hiddenNav.style.display = "block";
 	}
 });
+
+getToken()
