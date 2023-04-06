@@ -1,16 +1,16 @@
-const bioImage = document.querySelectorAll(".bio-img"),
-	name = document.querySelectorAll(".name"),
-	userName = document.querySelector(".user-name"),
-	desc = document.querySelectorAll(".desc"),
-	repoWrapper = document.querySelector(".repo-wrapper"),
-	counter = document.querySelector(".counter");
+const bioImage = document.querySelectorAll(".bio-img")
+const	name = document.querySelectorAll(".name")
+const	userName = document.querySelector(".user-name")
+const	desc = document.querySelectorAll(".desc")
+const	repoWrapper = document.querySelector(".repo-wrapper")
+const	counter = document.querySelector(".counter");
 
 const url = "https://api.github.com/graphql";
 
 fetch(url, {
 	method: "POST",
 	headers: {
-		Authorization: "Bearer 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",
+		Authorization: 'Bearer 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',
 		"Content-Type": "application/json",
 	},
 	body: JSON.stringify({
