@@ -16,7 +16,7 @@ const bodyData = JSON.stringify({
 				login
 				bio 
 				avatarUrl
-				repositories(last: 20) {
+				repositories(first: 20) {
 						totalCount
 						nodes {
 						forkCount
